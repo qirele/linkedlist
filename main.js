@@ -1,15 +1,26 @@
 function LinkedList() {
-  let head = null;
+  let list = null;
 
-  const getHead = () => head;
+  const head = () => list;
+
+  const tail = () => {
+    let cur = list;
+    let prev = null;
+    while (cur !== null) {
+      prev = cur;
+      cur = cur.next;
+    }
+
+    return prev;
+  };
 
   const append = (value) => {
-    if (head === null) {
-      head = Node(value);
+    if (list === null) {
+      list = Node(value);
       return;
     }
 
-    let cur = head;
+    let cur = list;
     let prev = null;
     while (cur !== null) {
       prev = cur;
@@ -19,20 +30,36 @@ function LinkedList() {
     prev.next = Node(value);
   }
 
+  const prepend = (value) => {
+    list = Node(value, list);
+  }
 
-  return {getHead, append};
+  const size = () => {
+    let cur = list;
+    let counter = 0;
+    while (cur !== null) {
+      counter++;
+      cur = cur.next;
+    }
+    return counter;
+  }
+
+
+  return {append, prepend, size, head, tail};
 }
 
 function Node(value = null, next = null) {
-  // let obj = {};
-  // obj.value = value;
-  // obj.next = next;
-  // return obj;
   return {value, next}
 }
 
 let list = LinkedList();
 list.append("bruh");
 list.append("babe");
+list.prepend("brochocho")
 list.append("dawg");
-console.log(list.getHead());
+// list.prepend("muhnuck");
+// list.prepend("brodie");
+// list.prepend("homie");
+console.log(list.head());
+console.log(list.size());
+console.log(list.tail());
