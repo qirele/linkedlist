@@ -113,7 +113,28 @@ function LinkedList() {
     preceding.next = newNode;
   }
 
-  return {append, prepend, size, head, tail, at, pop, contains, find, toString, insertAt};
+  const removeAt = (index) => {
+    if (at(index) === -1) {
+      console.log(`Can't delete item item at index ${index}, it doesn't exist`);
+      return -1;
+    } 
+    
+
+    if (size() >= 2) {
+      if (index === 0) {
+        list = list.next;
+      }
+
+      const prev = at(index - 1);
+      const next = at(index + 1);
+      prev.next = next === -1 ? null : next;
+    } else {
+      list = null;
+    }
+   
+  }
+
+  return {append, prepend, size, head, tail, at, pop, contains, find, toString, insertAt, removeAt};
 }
 
 function Node(value = null, next = null) {
@@ -128,22 +149,6 @@ list.append("dawg");
 
 console.log(list.toString());
 
-list.insertAt("Q-Tip", 3);
+list.removeAt(3);
 
 console.log(list.toString());
-
-
-// for (let i = 0; i < list.size(); i++) {
-//   console.log(list.at(i).value);
-// }
-//
-// console.log(`is 'dawg' in list? ${list.contains("dawg")}`);
-// list.pop();
-// console.log("\npopped\n");
-//
-// for (let i = 0; i < list.size(); i++) {
-//   console.log(list.at(i).value);
-// }
-// console.log(`is 'dawg' in list? ${list.contains("dawg")}`);
-//
-//
