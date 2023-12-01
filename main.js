@@ -96,10 +96,24 @@ function LinkedList() {
   }
 
   const insertAt = (value, index) => {
-    
+    if (at(index) === -1) {
+      console.log(`can't insert '${value}', there is no element at index ${index}`);
+      return -1;
+    } 
+
+    if (index === 0) {
+      prepend(value);
+      return;
+    }
+
+    // point the newNode at the same thing as the node behind at(index)
+    const newNode = Node(value, at(index));  
+    // point the preceding Node at the newNode instead
+    const preceding = at(index - 1);
+    preceding.next = newNode;
   }
 
-  return {append, prepend, size, head, tail, at, pop, contains, find, toString};
+  return {append, prepend, size, head, tail, at, pop, contains, find, toString, insertAt};
 }
 
 function Node(value = null, next = null) {
@@ -111,6 +125,10 @@ list.append("bruh");
 list.append("babe");
 list.prepend("brochocho")
 list.append("dawg");
+
+console.log(list.toString());
+
+list.insertAt("Q-Tip", 3);
 
 console.log(list.toString());
 
