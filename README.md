@@ -9,4 +9,7 @@ linked list element:
 - holds a value
 - holds a reference to the next element
 
+run this like dis
 node main.js
+or
+using npm package live-server
