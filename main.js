@@ -65,7 +65,41 @@ function LinkedList() {
     }
   }
 
-  return {append, prepend, size, head, tail, at, pop};
+  const contains = (value) => {
+    let cur = list;
+    while (cur !== null) {
+      if (cur.value === value) return true;
+      cur = cur.next;
+    }
+
+    return false; // not found
+  }
+
+  const find = (value) => {
+    let cur = list;
+    let counter = 0;
+    while (cur !== null) {
+      if (cur.value === value) return counter;
+      cur = cur.next;
+      counter++;
+    }
+
+    return null;
+  }
+  
+  function toString(current = list) {
+    if (current === null) {
+      return "null";
+    }
+
+    return `( ${current.value} ) -> ${toString(current.next)}`;
+  }
+
+  const insertAt = (value, index) => {
+    
+  }
+
+  return {append, prepend, size, head, tail, at, pop, contains, find, toString};
 }
 
 function Node(value = null, next = null) {
@@ -74,19 +108,24 @@ function Node(value = null, next = null) {
 
 let list = LinkedList();
 list.append("bruh");
-// list.append("babe");
-// list.prepend("brochocho")
-// list.append("dawg");
-// console.log(list.head());
-// console.log(list.size());
-// console.log(list.tail());
-for (let i = 0; i < list.size(); i++) {
-  console.log(list.at(i).value);
-}
+list.append("babe");
+list.prepend("brochocho")
+list.append("dawg");
 
-list.pop();
-console.log("popped");
+console.log(list.toString());
 
-for (let i = 0; i < list.size(); i++) {
-  console.log(list.at(i).value);
-}
+
+// for (let i = 0; i < list.size(); i++) {
+//   console.log(list.at(i).value);
+// }
+//
+// console.log(`is 'dawg' in list? ${list.contains("dawg")}`);
+// list.pop();
+// console.log("\npopped\n");
+//
+// for (let i = 0; i < list.size(); i++) {
+//   console.log(list.at(i).value);
+// }
+// console.log(`is 'dawg' in list? ${list.contains("dawg")}`);
+//
+//
